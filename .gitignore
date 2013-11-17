@@ -11,6 +11,8 @@
 	local.properties
 	.settings/
 	.loadpath
+	.project
+	.classpath
 	
 	# External tool builders
 	.externalToolBuilders/
@@ -21,6 +23,7 @@
 	# CDT-specific
 	.cproject
 	.DS_Store
+	
 	# PDT-specific
 	.buildpath
 	
@@ -29,4 +32,4 @@
 	
 	# docs
 	docs/
-/target
+	target/
