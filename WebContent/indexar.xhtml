@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+   xmlns:p="http://primefaces.org/ui">  
+  
+    <h:head>  
+    	<title>Indexar</title>
+    </h:head>  
+      
+    <h:body style="background-image:url('images/bg.png');">  
+		<div id="indexar">
+            <h:form id="form-cidades">  
+              <p:commandLink action="#{indexarController.indexar}" immediate="false"  value="Iniciar indexão..." />
+              <p:commandLink action="#{indexarController.buscar}" immediate="false"  value="Buscando..." />
+            </h:form>  			 
+		</div>
+    </h:body>  
+</html>

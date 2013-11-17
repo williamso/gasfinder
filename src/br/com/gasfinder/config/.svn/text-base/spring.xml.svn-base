@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:sec="http://www.springframework.org/schema/security"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+						   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						   http://www.springframework.org/schema/tx
+						   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+						   http://www.springframework.org/schema/aop
+						   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						   http://www.springframework.org/schema/security
+						   http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+		
+	<!-- Conexão com banco de dados -->
+	<bean id="dataSource" class="br.com.gasfinder.config.Conexao" />
+		
+	<!-- Hibernate -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    	<property name="annotatedClasses">
+    		<list>
+    			<value>br.com.gasfinder.entidade.Bandeira</value>
+    			<value>br.com.gasfinder.entidade.Cidade</value>
+    			<value>br.com.gasfinder.entidade.Combustivel</value>
+    			<value>br.com.gasfinder.entidade.Comentario</value>
+    			<value>br.com.gasfinder.entidade.Estado</value>
+    			<value>br.com.gasfinder.entidade.Posto</value>
+    			<value>br.com.gasfinder.entidade.Usuario</value>
+    			<value>br.com.gasfinder.entidade.ValorCombustivel</value>
+    			<value>br.com.gasfinder.entidade.ValorCombustivel2</value>
+    			<value>br.com.gasfinder.entidade.PostoBusca</value>
+    			<value>br.com.gasfinder.entidade.Usuario</value>
+    			<value>br.com.gasfinder.entidade.Autorizacao</value>
+    		</list>
+    	</property>
+    	<property name="hibernateProperties">
+    		<props>
+    			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+    			<prop key="hibernate.show_sql">true</prop>  
+    			<prop key="hibernate.hbm2ddl.auto">update</prop> 	
+    			<prop key="hibernate.current_session_context_class">thread</prop> 
+    			<prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
+				<prop key="hibernate.search.indexing_strategy">manual</prop>
+				<prop key="hibernate.search.default.indexBase">C:\DesenvPessoal\indexes</prop>		
+    		</props>
+    	</property>
+    	<property name="dataSource" ref="dataSource" />
+    </bean>
+
+	<!-- Injeta uma sessão do hibernate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+  		<property name="sessionFactory" ref="sessionFactory" />
+	</bean> 
+	 
+	<!-- DAOs -->
+    <bean id="bandeiraDAO" class="br.com.gasfinder.dao.BandeiraDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="cidadeDAO" class="br.com.gasfinder.dao.CidadeDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="combustivelDAO" class="br.com.gasfinder.dao.CombustivelDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="comentarioDAO" class="br.com.gasfinder.dao.ComentarioDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="estadoDAO" class="br.com.gasfinder.dao.EstadoDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="postoDAO" class="br.com.gasfinder.dao.PostoDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="usuarioDAO" class="br.com.gasfinder.dao.UsuarioDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="valorCombustivelDAO" class="br.com.gasfinder.dao.ValorCombustivelDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+    <bean id="valorCombustivel2DAO" class="br.com.gasfinder.dao.ValorCombustivel2DAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+   <bean id="postoBuscaDAO" class="br.com.gasfinder.dao.PostoBuscaDAO">
+    	<!-- Injeta esse objeto hibernateTemplate dentro do DAO -->
+    	<property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+   
+    <bean id="mediaDAO" class="br.com.gasfinder.dao.JdbcMediaDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+    <bean id="jdbcPostoBuscaDAO" class="br.com.gasfinder.dao.JdbcPostoBuscaDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+    <bean id="jdbcCombustivelHistDAO" class="br.com.gasfinder.dao.JdbcCombustivelHistDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+    <bean id="jdbcUsuarioDAO" class="br.com.gasfinder.dao.JdbcUsuarioDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+    <bean id="jdbcValorCombustivel2DAO" class="br.com.gasfinder.dao.JdbcValorCombustivel2DAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+    <bean id="jdbcComentarioDAO" class="br.com.gasfinder.dao.JdbcComentarioDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+    <bean id="jdbcBandeiraDAO" class="br.com.gasfinder.dao.JdbcBandeiraDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- Config Spring Security -->
+	<sec:http auto-config="true" use-expressions="true">
+		<sec:intercept-url pattern="/posto.jsf" access="hasRole('ROLE_USER')"/>
+        <sec:intercept-url pattern="/administracao.jsf" access="hasRole('ROLE_ADMIN')"/>
+        <sec:form-login login-page="/login.jsf" authentication-failure-url="/login.jsf?erro=true"/>
+        <sec:logout logout-success-url="/index.jsf" invalidate-session="true"/>  
+    </sec:http>
+ 
+    <sec:authentication-manager>
+        <sec:authentication-provider>
+            <sec:jdbc-user-service data-source-ref="dataSource"
+               users-by-username-query="SELECT username, password, enable  FROM usuarios WHERE username=?"
+               authorities-by-username-query="SELECT usuarios_usuario as username, autorizacoes_nome as authority FROM usuario_autorizacao WHERE usuarios_usuario=?"
+            />
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+</beans>

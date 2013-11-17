@@ -1,0 +1,199 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">  
+ 	 <f:metadata>
+       <f:viewParam name="pesquisa" value="${pesquisaController.palavras}" />
+    </f:metadata>
+    <h:head>  
+  		<title>GasFinder :: Resultado Pesquisa</title>
+  		<meta http-equiv="content-type" content="text/html;charset=UTF-8;application/x-javascript" />
+  		<link href="css/principal.css" media="screen" rel="stylesheet" type="text/css"></link>
+  		<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript" />
+  		<script type="text/javascript">var switchTo5x=false;</script>
+  		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  		<script type="text/javascript">stLight.options({publisher:'c4ccad9d-e2cb-411f-8200-5fdba5cb0568'});</script>
+  		<script>
+  		        function findMe(latitude, longitude, nome) {
+        	 navigator.geolocation.getCurrentPosition(
+                function(position) {
+                	var map = gmap.getMap(),
+                    //latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    latlng = new google.maps.LatLng(latitude, longitude);
+
+                    map.setCenter(latlng);
+                    map.setZoom(14);
+                    var marker = new google.maps.Marker({
+                        position: latlng,
+                        icon:'images/gazstation2.png',
+                        title: nome
+                    });
+
+                    marker.setMap(map);
+                },
+                function(error) {
+                    alert(error.message);
+                },
+                {
+                   enableHighAccuracy: true
+                });
+        	 tab.select(tab.getActiveIndex() + 1);
+             
+        }
+  		</script>
+    </h:head>  
+    
+ 	<h:body style="background-image:url('images/bg.png');">  
+    	<div id="login"> 
+	        <h:outputLink value="login.jsf" rendered="#{usuarioController.usuario.usuario == 'Login'}">  
+		        <h:outputText value="#{usuarioController.usuario.usuario}"/>  
+		    </h:outputLink>   
+	        <h:outputLink value="cadastroUsuario.jsf" rendered="#{usuarioController.usuario.usuario != 'Login'}">  
+		        <h:outputText value="#{usuarioController.usuario.usuario}"/>  
+		    </h:outputLink>   
+	        <h:outputLink value="administracao.jsf" rendered="#{usuarioController.usuario.usuario == 'admin'}">  
+		        <h:outputText value="Administração"/>  
+		    </h:outputLink>   
+		</div>
+
+		<p:graphicImage value="images/logo-gasfinder.png" style="position: absolute;width: 280px;top: 45px; left: 200px;"/> 
+		
+		<div id="busca" style="width: 100%; position: relative;  height: 50px;">
+			<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+			<p:dialog modal="true" widgetVar="statusDialog" header="Aguarde..." draggable="false" closable="false">  
+			    <p:graphicImage value="images/ajaxloadingbar.gif" />  
+			</p:dialog>
+			
+			<div class="form-busca" style=" padding-left: 300px;">  
+				<h:form style="width: 594px"> 
+					<h:inputText value="${pesquisaController.palavras}"/>  
+		            <h:commandButton value="buscar" action="pesquisa?faces-redirect=true&amp;includeViewParams=true"/>
+				</h:form> 
+			</div>
+		</div>
+		
+		<div id="Resultado">
+			<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+			<p:dialog modal="true" widgetVar="statusDialog" header="Aguarde..." draggable="false" closable="false">  
+			    <p:graphicImage value="images/ajaxloadingbar.gif" />  
+			</p:dialog>
+
+			<h:form>  
+			    <p:tabView id="tab" widgetVar="tab" dynamic="true" cache="true" activeIndex="0" style="background-image:url('images/bg.png'); border: none;">  
+			        <p:tab title="Lista">  
+			            <p:dataGrid value="${pesquisaController.resultado}" var="posto" paginator="true" columns="1" rows="10" effectSpeed="fast"  
+        							paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"  paginatorPosition="bottom" rowsPerPageTemplate="10,20,30">  
+					        <h:panelGrid columns="1" style="width:100%">  
+						        <p:column>  
+								   <h:outputLink value="posto.jsf?code=#{posto.code}" title="#{posto.nomePosto}" style="float:none;">  
+								        <h:outputText value="#{posto.nomePosto}" style="float:none; font-size: 25px; color: blue; font-weight: bold; vertical-align: 5px;"   />  
+								    </h:outputLink>  
+	   							   <p:graphicImage value="images/gasolina.png" style="width:30px; margin-left: 20px;"/>   
+								   <h:outputText value=" R$ #{posto.valorGasolina}" style="color: blue; font-size: 25px;font-weight: bold; vertical-align: 5px;"/>  
+								   <p:graphicImage value="images/alcool.png" style="width:30px; margin-left: 20px;"/>   
+								   <h:outputText value=" R$ #{posto.valorEtanol}" style="color: blue; font-size: 25px;font-weight: bold; vertical-align: 5px;"/>  
+								   <p:graphicImage value="images/dieesil.png" style="width:30px; margin-left: 20px;"/>   
+								   <h:outputText value=" R$ #{posto.valorDiesel}" style="color: blue; font-size: 25px;font-weight: bold; vertical-align: 5px;"/>  
+								   <p:graphicImage value="images/gasl.png" style="width:30px; margin-left: 20px;"/>   
+						           <h:outputText value=" R$ #{posto.valorGNV}" style="color: blue;font-size: 25px; font-weight: bold; vertical-align: 5px;"/>  
+									
+     							</p:column>  
+
+						        <p:column>  
+								   <h:outputText value="#{posto.endereco} - #{posto.cidade} - #{posto.uf}" style="font-size: 18px; color: green; padding-top:0px; margin-top: 0px;"/> 
+								</p:column>  
+						        <p:column>  
+								   <span id="button#{posto.code}_1" class="st_sharethis_custom"/>
+								   <span id="button#{posto.code}_2"/>
+								   <script>
+								         stWidget.addEntry({
+								                 "service":"facebook",
+								                 "element":document.getElementById('button#{posto.code}_1'),
+								                 "url":"http://localhist:8080/TCC03/posto.jsf?code=#{posto.code}",
+								                 "title":"#{posto.nomePosto} - Gasolina: R$ #{posto.valorGasolina} - Etanol: R$ #{posto.valorEtanol} - Diesel: R$ #{posto.valorGasolina} - GNV: R$ #{posto.valorGNV}",
+								                 "type":"hcount",
+								                 "text":"#{posto.nomePosto} - Gasolina: R$ #{posto.valorGasolina} - Etanol: R$ #{posto.valorEtanol} - Diesel: R$ #{posto.valorGasolina} - GNV: R$ #{posto.valorGNV}" ,
+								                 "summary":"#{posto.nomePosto} - Gasolina: R$ #{posto.valorGasolina} - Etanol: R$ #{posto.valorEtanol} - Diesel: R$ #{posto.valorGasolina} - GNV: R$ #{posto.valorGNV}"
+								         });
+								         
+								         stWidget.addEntry({
+							                 "service":"twitter",
+							                 "element":document.getElementById('button#{posto.code}_2'),
+							                 "url":"http://localhist:8080/TCC03/posto.jsf?code=#{posto.code}",
+							                 "title":"#{posto.nomePosto} - Gasolina: R$ #{posto.valorGasolina} - Etanol: R$ #{posto.valorEtanol} - Diesel: R$ #{posto.valorGasolina} - GNV: R$ #{posto.valorGNV}",
+							                 "type":"hcount",
+							                 "text":"##{posto.nomePosto} - Gasolina: R$ #{posto.valorGasolina} - Etanol: R$ #{posto.valorEtanol} - Diesel: R$ #{posto.valorGasolina} - GNV: R$ #{posto.valorGNV}" ,
+							                 "summary":"#{posto.nomePosto} - Gasolina: R$ #{posto.valorGasolina} - Etanol: R$ #{posto.valorEtanol} - Diesel: R$ #{posto.valorGasolina} - GNV: R$ #{posto.valorGNV}"
+							         });
+								</script>
+									<p:commandButton value="Mapa" type="button" onclick="findMe(#{posto.latitude},#{posto.longitude},'#{posto.nomePosto}')" ajax="false" icon="images/maps.png"/>  
+								
+								 </p:column>
+						      </h:panelGrid>
+						</p:dataGrid> 
+						 
+			        </p:tab>  
+			  
+			        <p:tab title="Mapa">  
+					    <p:gmap id="gmap" widgetVar="gmap" center="-12.940322128384613, -38.49609375" zoom="4" type="ROADMAP" style="width:100%;height:400px"  model="#{pesquisaController.simpleModel}" />
+			        </p:tab>  
+			    </p:tabView>  
+			</h:form>  
+		</div>
+		
+		
+		<div id="rodape">
+		    <ul>
+				<li><a href="#">RSS</a></li>
+				<li><a href="#">Twitter</a></li>
+				<li><a href="#">Facebook</a></li>
+			    <li>
+			    	<div id="contato">
+					    <h:outputLink value="#" title="Contato" onclick="dlgContato.show();">  
+					        <h:outputText value="Contato"/>  
+					    </h:outputLink>  
+						
+						<p:dialog  header="Contato" widgetVar="dlgContato" height="300" width="470" modal="true" showEffect="clip" hideEffect="clip">
+						    <h:form> 
+							    <h:panelGrid columns="2" cellpadding="5">  
+						            <h:outputLabel for="email" value="E-mail: " />  
+						            <p:inputText id="email" label="email" style="width:300px;"/>  
+						              
+						            <h:outputLabel for="feedback" value="Feedback:  " />  
+						            <p:inputTextarea id="feedback"  label="feedback" style="width:300px;height:100px;"/>  
+						              
+						            <f:facet name="footer">  
+						                 <p:commandButton value="Enviar" />  
+						            </f:facet>  
+						        </h:panelGrid> 
+						    </h:form>
+						</p:dialog>
+					</div>
+			     </li>
+			     <li>
+				     <div id="quemsomos">
+						
+						<h:outputLink value="#" title="Quem Somos" onclick="dlgQuem.show();">  
+					        <h:outputText value="Quem Somos"/>  
+					    </h:outputLink>  
+						
+						<p:dialog  header="Quem Somos!!!" widgetVar="dlgQuem" height="350" width="470" modal="true" showEffect="clip" hideEffect="clip">
+						    <h:form> 
+							    <h:panelGrid columns="2" cellpadding="5">  
+						            <p:graphicImage value="images/william2.jpg" /> 
+						       		<h:outputText value="Pedro Axelrud
+		Malabarista de infraestrutura, desenvolvedor Rails e o que mais precisar. Ele mora na internet e gosta de todas as novas buzzwords."/>  
+						       		<p:graphicImage value="images/william2.jpg" /> 
+						       		<h:outputText value="Pedro Axelrud
+		Malabarista de infraestrutura, desenvolvedor Rails e o que mais precisar. Ele mora na internet e gosta de todas as novas buzzwords." />  
+						        
+						        </h:panelGrid> 
+						    </h:form>
+						</p:dialog>
+						
+					</div>  
+				</li>
+			</ul>
+		</div>
+    </h:body>  
+</html>

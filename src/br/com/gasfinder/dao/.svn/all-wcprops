@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao
+END
+JdbcBandeiraDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/JdbcBandeiraDAO.java
+END
+CidadeDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/CidadeDAO.java
+END
+ValorCombustivelDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/ValorCombustivelDAO.java
+END
+EstadoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/EstadoDAO.java
+END
+BandeiraDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/BandeiraDAO.java
+END
+CombustivelDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/CombustivelDAO.java
+END
+JdbcMediaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/svn-mobiorama/!svn/ver/32/trunk/Gasfinder/src/br/com/gasfinder/dao/JdbcMediaDAO.java
+END
+JdbcPostoBuscaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/svn-mobiorama/!svn/ver/31/trunk/Gasfinder/src/br/com/gasfinder/dao/JdbcPostoBuscaDAO.java
+END
+ValorCombustivel2DAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/svn-mobiorama/!svn/ver/31/trunk/Gasfinder/src/br/com/gasfinder/dao/ValorCombustivel2DAO.java
+END
+UsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/UsuarioDAO.java
+END
+PostoBuscaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/PostoBuscaDAO.java
+END
+PostoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/PostoDAO.java
+END
+JdbcCombustivelHistDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/JdbcCombustivelHistDAO.java
+END
+JdbcValorCombustivel2DAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/svn-mobiorama/!svn/ver/31/trunk/Gasfinder/src/br/com/gasfinder/dao/JdbcValorCombustivel2DAO.java
+END
+JdbcUsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/dao/JdbcUsuarioDAO.java
+END
+JdbcComentarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/svn-mobiorama/!svn/ver/29/trunk/Gasfinder/src/br/com/gasfinder/dao/JdbcComentarioDAO.java
+END
+ComentarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/svn-mobiorama/!svn/ver/29/trunk/Gasfinder/src/br/com/gasfinder/dao/ComentarioDAO.java
+END

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">  
+ 
+    <h:head>  
+  	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Administração</title>
+  	</h:head>  
+      
+    <h:body style="background-image:url('images/bg.png');">  
+      	 <div id="login"> 
+		    <h:outputLink value="index.jsf" style="text-decoration: none;color: #666;float: right;font-size: 21px;font-weight: bold;float: right;padding: 10px; 
+		        font-family: arial, helvetica, freesans, sans-serif; ">  
+		        <h:outputText value="Home     " />  
+		    </h:outputLink> 
+		    <h:outputLink value="administracao.jsf" rendered="#{usuarioController.usuario.usuario == 'admin'}"  style="text-decoration: none;color: #666;float: right;font-size: 21px;font-weight: bold;float: right;padding: 10px; 
+		        font-family: arial, helvetica, freesans, sans-serif; ">  
+		        <h:outputText value="Administração"/>  
+		    </h:outputLink> 
+		</div>
+		<div id="home">
+			<p:dialog header="Novo Usuário" visible="true" closable="false" draggable="false" resizable="false" width="420">
+	            <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+				<h:form> 
+					 <p:messages />
+		             <h:panelGrid columns="2" cellpadding="5">
+	                    <h:outputLabel for="usuario" value="Usuario *" /> 
+	                    <h:inputText value="#{usuarioController.user}" id="usuario" required="true"/>
+	                    <h:outputLabel for="senha" value="Senha * " />
+	                    <h:inputSecret value="#{usuarioController.password}" id="senha" required="true"/>
+	                    <h:outputLabel for="email" value="E-mail * " />
+	                    <h:inputText value="#{usuarioController.email}" id="email" required="true"/>
+	                    <p:commandButton action="#{usuarioController.salvar}" value="Cadastrar"/>
+	              	</h:panelGrid> 
+				</h:form>
+			</p:dialog> 
+		</div>
+    </h:body>  
+</html>

@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jstl/core" 
+    xmlns:ui="http://java.sun.com/jsf/facelets">  
+    <f:metadata>
+       <f:viewParam name="pesquisa" value="${pesquisaController.palavras}" />
+    </f:metadata>
+    
+    <h:head>  
+    	<title>GasFinder</title>
+  		<link href="css/principal.css" media="screen" rel="stylesheet" type="text/css"></link>
+  		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true_or_false&amp;key=ABQIAAAAlNXgc3XQG0WnB7cAmLj17xT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSH2drj99LJe8ZJKji1mj7WJLT9Fw" type="text/javascript"></script>
+  		<script>
+  		 $ = jQuery;
+  		 
+  		 $(document).ready(function() {
+  			 if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(
+					function(position){
+						var lat = position.coords.latitude;
+						var lon = position.coords.longitude;
+
+						// Iniciando 
+						var geocoder = new GClientGeocoder();
+						geocoder.getLocations("("+lat+','+lon+")",localizacao);
+						//alert(geocoder);
+
+						function localizacao(retorno){
+							if (!retorno || retorno.Status.code != 200) {
+								//alert("Erro Código: " + retorno.Status.code);
+							} else {
+								place = retorno.Placemark[0];
+								$('.local').text( "Local atual: "+place.AddressDetails.Country.AdministrativeArea.Locality.LocalityName);
+								$('#cidade').val( place.AddressDetails.Country.AdministrativeArea.Locality.LocalityName);
+								
+								$('.local').click();
+							}
+						}
+					}
+				);
+			}
+		});
+  		 
+
+	 
+  		</script>
+    </h:head>  
+      
+    <h:body style="background-image:url('images/bg.png');">  
+    	<div id="login"> 
+	        <h:outputLink value="login.jsf" rendered="#{usuarioController.usuario.usuario == 'Login'}">  
+		        <h:outputText value="#{usuarioController.usuario.usuario}"/>  
+		    </h:outputLink> 
+		    <h:outputLink value="j_spring_security_logout" rendered="#{usuarioController.usuario.usuario != 'Login'}">  
+		        <h:outputText value="Sair"/>  
+		    </h:outputLink>   
+	        <h:outputLink value="cadastroUsuario.jsf" rendered="#{usuarioController.usuario.usuario != 'Login'}">  
+		        <h:outputText value="#{usuarioController.usuario.usuario}"/>  
+		    </h:outputLink>   
+	        <h:outputLink value="administracao.jsf" rendered="#{usuarioController.usuario.usuario == 'admin'}">  
+		        <h:outputText value="Administração"/>  
+		    </h:outputLink>
+		</div>
+		<div id="logo">
+			<p:graphicImage value="images/logo-gasfinder.png" /> 
+		</div>
+      	
+		<div id="home">
+			
+				<div class="form-busca">  
+					<h:form style="width: 594px"> 
+			            <h:inputText value="${pesquisaController.palavras}"/>  
+			            <h:commandButton value="buscar" action="pesquisa?faces-redirect=true&amp;includeViewParams=true"/>
+					</h:form> 
+				</div>
+	            <h:form id="form-cidades">  
+	              <p:commandLink actionListener="#{indexController.media}" style="position: absolute; left: 430px; top: 55px;" update="gasolina,alcool, dieesil,gnv" immediate="false"  styleClass="local" value="Rio Branco" >
+	             	 <f:param name="cidade" value="Rio Branco"/>  
+	             	 <f:param name="uf" value="AC"/>  
+	              </p:commandLink>  
+	            </h:form>  			 
+		</div>
+		<div id="etiquetas">
+				<p:graphicImage value="images/gasolina-com-etiqueta.png" /> 
+				<h:outputText id="gasolina" value="R$ #{indexController.gasolina}" style="font-size: 26px; position: absolute; top: 205px;left: 210px; color: white;
+    text-shadow: 1px 0.9px white, -1px -1px  black;"/>  
+				<p:graphicImage value="images/alcool-com-etiqueta.png" /> 
+				<h:outputText id="alcool" value="R$ #{indexController.alcool}" style="font-size: 26px; position: absolute; top: 205px;left: 525px; color: white;
+    text-shadow: 1px 0.9px white, -1px -1px  black;"/>  
+				<p:graphicImage value="images/dieesil-com-etiqueta.png" /> 
+				<h:outputText id="dieesil" value="R$ #{indexController.dieesil}" style="font-size: 26px; position: absolute; top: 205px;left: 845px; color: white;
+    text-shadow: 1px 0.9px white, -1px -1px  black;"/>  
+				<p:graphicImage value="images/gas-com-etiqueta.png" /> 	         
+				<h:outputText id="gnv" value="R$ #{indexController.gas}" style="font-size: 26px; position: absolute; top: 205px;right: 130px; color: white;
+    text-shadow: 1px 0.9px white, -1px -1px  black;"/>  
+		</div>
+		
+		<div id="rodape">
+		    <ul>
+				<li><a href="#">RSS</a></li>
+				<li><a href="#">Twitter</a></li>
+				<li><a href="#">Facebook</a></li>
+			    <li>
+			    	<div id="contato">
+					    <h:outputLink value="#" title="Contato" onclick="dlgContato.show();">  
+					        <h:outputText value="Contato"/>  
+					    </h:outputLink>  
+						
+						<p:dialog  header="Contato" widgetVar="dlgContato" height="300" width="470" modal="true" showEffect="clip" hideEffect="clip">
+						    <h:form> 
+							    <h:panelGrid columns="2" cellpadding="5">  
+						            <h:outputLabel for="email" value="E-mail: " />  
+						            <p:inputText id="email" label="email" style="width:300px;"/>  
+						              
+						            <h:outputLabel for="feedback" value="Feedback:  " />  
+						            <p:inputTextarea id="feedback"  label="feedback" style="width:300px;height:100px;"/>  
+						              
+						            <f:facet name="footer">  
+						                 <p:commandButton value="Enviar" />  
+						            </f:facet>  
+						        </h:panelGrid> 
+						    </h:form>
+						</p:dialog>
+					</div>
+			     </li>
+			     <li>
+				     <div id="quemsomos">
+						
+						<h:outputLink value="#" title="Quem Somos" onclick="dlgQuem.show();">  
+					        <h:outputText value="Quem Somos"/>  
+					    </h:outputLink>  
+						
+						<p:dialog  header="Quem Somos!!!" widgetVar="dlgQuem" height="350" width="470" modal="true" showEffect="clip" hideEffect="clip">
+						    <h:form> 
+							    <h:panelGrid columns="2" cellpadding="5">  
+						            <p:graphicImage value="images/william2.jpg" style="width: 100px;"/> 
+						       		<h:outputText value="Pedro Axelrud
+		Malabarista de infraestrutura, desenvolvedor Rails e o que mais precisar. Ele mora na internet e gosta de todas as novas buzzwords."/>  
+						       		<p:graphicImage value="images/william2.jpg" style="width: 100px;"/> 
+						       		<h:outputText value="Pedro Axelrud
+		Malabarista de infraestrutura, desenvolvedor Rails e o que mais precisar. Ele mora na internet e gosta de todas as novas buzzwords." />  
+						        
+						        </h:panelGrid> 
+						    </h:form>
+						</p:dialog>
+						
+					</div>  
+				</li>
+			</ul>
+		</div>
+    </h:body>  
+</html>

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle
+END
+CidadeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle/CidadeController.java
+END
+IndexarController.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle/IndexarController.java
+END
+IndexController.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle/IndexController.java
+END
+ComentarioController.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/svn-mobiorama/!svn/ver/29/trunk/Gasfinder/src/br/com/gasfinder/controle/ComentarioController.java
+END
+PostoController.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/svn-mobiorama/!svn/ver/31/trunk/Gasfinder/src/br/com/gasfinder/controle/PostoController.java
+END
+UsuarioController.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle/UsuarioController.java
+END
+CombustivelController.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle/CombustivelController.java
+END
+BandeiraController.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle/BandeiraController.java
+END
+PesquisaController.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/svn-mobiorama/!svn/ver/21/trunk/Gasfinder/src/br/com/gasfinder/controle/PesquisaController.java
+END
+ValorCombustivelController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/svn-mobiorama/!svn/ver/31/trunk/Gasfinder/src/br/com/gasfinder/controle/ValorCombustivelController.java
+END

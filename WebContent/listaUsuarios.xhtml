@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">  
+ 
+     <h:head>  
+  	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    	<title>Novo Usuário</title>
+  	 </h:head>  
+      
+    <h:body style="background-image:url('images/bg.png');">  
+      	 <h:outputLink value="index.jsf" style="text-decoration: none;color: #666;float: right;font-size: 21px;font-weight: bold;float: right;padding: 10px; 
+		        font-family: arial, helvetica, freesans, sans-serif; ">  
+		        <h:outputText value="Home     " />  
+		    </h:outputLink> 
+		<div id="home">
+			<p:dialog header="Usuários" visible="true" closable="false" draggable="false" resizable="false" width="420">
+	            <center>
+	                <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>
+	            </center>
+				<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+				<h:form> 
+				    <p:dataTable var="historico" value="#{usuarioController.usuarios}" >  
+				        <p:column>  
+				            <f:facet name="header">  
+				                    Usuário 
+				            </f:facet>  
+				            <h:outputText value=" #{usuario.usuario}" />  
+				        </p:column>  
+				  
+				        <p:column>  
+				            <f:facet name="header">  
+				                    Senha  
+				            </f:facet>  
+				            <h:outputText value="#{usuario.senha}" />  
+				        </p:column>  
+				  
+				        <p:column>  
+				            <f:facet name="header">  
+				                    E-mail  
+				            </f:facet>  
+				            <h:outputText value="#{usuario.email}" />  
+				        </p:column>  
+			   	    </p:dataTable>  
+						
+				</h:form>
+			</p:dialog> 
+		</div>
+    </h:body>  
+</html>

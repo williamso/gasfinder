@@ -1,0 +1,182 @@
+body {
+	background-image:url('images/bg.png');
+	margin: 0px;
+	font-family: arial, helvetica, freesans, sans-serif;
+	font: x-small arial, helvetica, freesans, sans-serif;
+	*font-size: 1.25ex;
+	text-decoration: none;
+	color: #666666;
+	font-size: 21px;
+	font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	color: #666666;
+	float: left;
+	font-size: 21px;
+	font-weight: bold;
+}
+
+li {
+	list-style: none;
+}
+
+input,textarea,select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+form input[type="text"] {
+	background: url("es/fp/images/bg-input-busca.png") no-repeat scroll 0px
+		-52px transparent;
+	border: medium none;
+	color: #666666;
+	float: left;
+	font-size: 21px;
+	font-weight: bold;
+	height: 52px;
+	letter-spacing: -1.5px;
+	overflow: hidden;
+	padding: 0 25px 0 40px;
+	width: 445px;
+	line-height: 2.5em
+}
+
+form input[type="password"] {
+	background: url("es/fp/images/bg-input-busca.png") no-repeat scroll 0px
+		-52px transparent;
+	border: medium none;
+	color: #666666;
+	float: left;
+	font-size: 21px;
+	font-weight: bold;
+	height: 52px;
+	letter-spacing: -1.5px;
+	overflow: hidden;
+	padding: 0 25px 0 40px;
+	width: 445px;
+	line-height: 2.5em
+}
+
+form input[type="text"].estadoInicial {
+	background: url("es/fp/images/bg-input-busca.png") no-repeat scroll 0px
+		0px transparent;
+	color: #999
+}
+
+form {
+	margin: 36px auto 0 auto;
+}
+
+form input[type="submit"] {
+	background: url("es/fp/images/bt-buscar-home.png") no-repeat scroll 0 0
+		transparent;
+	border: medium none;
+	color: #FFFFFF;
+	display: block;
+	float: left;
+	font-size: 1.5em !important;
+	font-weight: bold;
+	height: 52px;
+	overflow: hidden;
+	width: 80px;
+	letter-spacing: -1px
+}
+
+form input[type="submit"]:hover {
+	background: url("es/fp/images/bt-buscar-home.png") no-repeat scroll 0
+		-52px transparent
+}
+
+form input[type="submit"]:active {
+	background: url("es/fp/images/bt-buscar-home.png") no-repeat scroll 0
+		-104px transparent
+}
+
+.dialog{
+	background-image: url('images/bg.png');
+}
+
+#login {
+	position: relative;
+	width: 100%;
+	height: 60px;
+}
+
+#login form input[type="text"] {
+	border: medium none;
+	color: #666666;
+	float: left;
+	font-size: 21px !important;
+	font-weight: bold !important;
+	height: 52px;
+	letter-spacing: -1.5px;
+	overflow: hidden;
+	padding: 0 25px 0 40px;
+	width: 200px;
+	line-height: 2.5em
+}
+
+#login form input[type="password"] {
+	border: medium none;
+	color: #666666;
+	float: left;
+	font-size: 21px !important;
+	font-weight: bold !important;
+	height: 52px;
+	letter-spacing: -1.5px;
+	overflow: hidden;
+	padding: 0 25px 0 40px;
+	width: 200px;
+	line-height: 2.5em
+}
+
+#login  a {
+	float: right;
+	padding: 10px;
+}
+
+#logo {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+#home {
+	position: relative;
+	width: 100%;
+	height: 70px;
+	color: #666;
+	margin-top: 20px;
+margin-right: 20px;
+margin-left: 40px;
+margin-bottom: 20px;
+}
+
+#etiquetas {
+	position: relative;
+	text-align: center;
+}
+
+#etiquetas img {
+	margin-right: 60px;
+	margin-left: 60px;
+	width:200px;
+}
+
+#rodape {
+	width: 100%;
+	position: relative;
+	text-align: center;
+	height: 30px;
+}
+
+#rodape ul {
+	margin-left: 350px;
+}
+
+#rodape a {
+	margin-right: 30px;
+}

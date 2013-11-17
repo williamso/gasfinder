@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+     xmlns:p="http://primefaces.org/ui">  
+     
+    <h:head>  
+  		<title>GasFinder :: Posto</title>
+     </h:head>  
+      
+    <h:body style="background-image:url('images/bg.png'); margin: 0px;
+					font-family: arial, helvetica, freesans, sans-serif;
+					font: x-small arial, helvetica, freesans, sans-serif;
+					text-decoration: none;
+					color: #666;
+					font-size: 21px;
+					font-weight: bold;">  
+	   <div id="login"> 
+   	 		 <h:outputLink value="login.jsf" rendered="#{usuarioController.usuario.usuario == 'Login'}" style="text-decoration: none;color: #666;float: right;font-size: 21px;font-weight: bold;float: right;padding: 10px; 
+		        font-family: arial, helvetica, freesans, sans-serif; ">   
+		        <h:outputText value="Login"/>  
+		    </h:outputLink> 
+		     <h:outputLink value="index.jsf" rendered="#{usuarioController.usuario.usuario != 'Login'}" style="text-decoration: none;color: #666;float: right;font-size: 21px;font-weight: bold;float: right;padding: 10px; 
+		        font-family: arial, helvetica, freesans, sans-serif; ">  
+		        <h:outputText value="#{usuarioController.usuario.usuario}" />  
+		    </h:outputLink> 
+		    <h:outputLink value="administracao.jsf" rendered="#{usuarioController.usuario.usuario == 'admin'}"  style="text-decoration: none;color: #666;float: right;font-size: 21px;font-weight: bold;float: right;padding: 10px; 
+		        font-family: arial, helvetica, freesans, sans-serif; ">  
+		        <h:outputText value="Administração"/>  
+		    </h:outputLink> 
+			<h:outputLink value="index.jsf" style="text-decoration: none;color: #666;float: right;font-size: 21px;font-weight: bold;float: right;padding: 10px; 
+		        font-family: arial, helvetica, freesans, sans-serif; ">  
+		        <h:outputText value="Home     " />  
+		    </h:outputLink> 
+		</div>
+		
+		<div id="titulo"  style="text-align: center; margin-left: auto; margin-right: auto; margin-top: 20px;margin-bottom: 40px;">
+				<p:graphicImage value="images/bandeira-petrobras.jpg"/> 
+	            <h:outputText value="#{postoController.nome}" style="font-size: 30px;vertical-align: 30px;margin-left: 10px;"/>
+		</div>
+		
+		<div id="precos" style="text-align: center; margin-left: 40px; margin-right: auto; margin-top: 100px;margin-bottom: 30px; width: 100%;height: 150px;">
+		<h:form>
+				<p:messages />
+				<h:inputHidden id="hidden1" value="#{postoController.code}" />
+				<p:graphicImage value="images/gasolina.png" style="width: 100px;"/> 
+				<h:outputText value="R$ " style="font-size: 30px;vertical-align: 30px;margin-left: 10px; text-size: 18px;"/>
+				<p:inplace id="ipgasolina" style="font-size: 30px;vertical-align: 30px;margin-left: 10px; margin-right: 60px; text-size: 18px;">  
+               		 <p:inputText value="#{postoController.valorGasolina}" style="font-size: 30px;margin-left: 10px;margin-right: 60px;width: 90px;"/>  
+         		</p:inplace>
+         			         
+				<p:graphicImage value="images/alcool.png" style="width: 100px;"/> 
+				<h:outputText value="R$ " style="font-size: 30px;vertical-align: 30px;margin-left: 10px; margin- text-size: 18px;"/>
+				<p:inplace id="ipetanol" style="font-size: 30px;vertical-align: 30px;margin-left: 10px; margin-right: 60px; text-size: 18px;">  
+               		 <p:inputText value="#{postoController.valorEtanol}" style="font-size: 30px;margin-left: 10px;margin-right: 60px;width: 90px;"/>  
+         		</p:inplace>	   
+         		      
+				<p:graphicImage value="images/gasl.png" style="width: 100px;"/> 
+				<h:outputText value="R$ " style="font-size: 30px;vertical-align: 30px;margin-left: 10px;  text-size: 18px;"/>
+				<p:inplace id="ipgnv"  style="font-size: 30px;vertical-align: 30px;margin-left: 10px; margin-right: 60px; text-size: 18px;">  
+               		 <p:inputText value="#{postoController.valorGNV}" style="font-size: 30px;margin-left: 10px;margin-right: 60px;width: 90px;"/>  
+         		</p:inplace>	
+         		         
+				<p:graphicImage value="images/dieesil.png" style="width: 100px;"/> 
+				<h:outputText value="R$ " style="font-size: 30px;vertical-align: 30px;margin-left: 10px; text-size: 18px;"/>
+				<p:inplace id="ipdiesel" style="font-size: 30px;vertical-align: 30px;margin-left: 10px; margin-right: 60px; text-size: 18px;">  
+               		 <p:inputText value="#{postoController.valorDiesel}" style="font-size: 30px;margin-left: 10px;margin-right: 60px;width: 90px;"/>  
+         		</p:inplace> 
+         		<p:commandButton value="Salvar"  update="ipgasolina, ipdiesel, ipgnv, ipetanol, historico" actionListener="#{postoController.salvar}"/>  
+         	</h:form>	         
+		</div>
+		
+		<div id="historico" style="text-align: center; margin-left: auto; margin-right: auto; margin-top: 20px;margin-bottom: 40px;">
+			<h:outputText value="Histórico de Alterações" style="font-size: 18px;"/> 
+			<h:form>  
+			    <p:dataTable id="historico" var="historico" value="#{postoController.historicos}" style="width: 800px; margin-left: 270px;">  
+			        <p:column>  
+			            <f:facet name="header">  
+			                    Data Alteração  
+			            </f:facet>  
+			            <h:outputText value="#{historico.dataAlteracao}" />  
+			        </p:column>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                    Gasolina  
+			            </f:facet>  
+			            <h:outputText value="#{historico.valorGasolina}" />  
+			        </p:column>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                    Etanol  
+			            </f:facet>  
+			            <h:outputText value="#{historico.valorEtanol}" />  
+			        </p:column>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                    GNV 
+			            </f:facet>  
+			            <h:outputText value="#{historico.valorGNV}" />  
+			        </p:column>
+			          
+			        <p:column>  
+			            <f:facet name="header">  
+			                    Diesel 
+			            </f:facet>  
+			            <h:outputText value="#{historico.valorDiesel}" />  
+			        </p:column>  
+			    </p:dataTable>  
+			</h:form>  
+		</div>
+		
+
+		<div id="comentarios" style="text-align: center; background-image:url('images/bg.png'); margin-left: auto; margin-right: auto; margin-top: 40px;margin-bottom: 40px;">
+			<h:outputText value="Comentários" style="font-size: 18px;"/> 
+			<h:form>  
+				<p:messages id="messages" showDetail="true" autoUpdate="true"/> 
+				<h:inputHidden id="hidden1" value="#{postoController.code}" />
+			    <p:dataTable id="comentarios" var="comentarios" value="#{postoController.comentarios}" style="width: 800px; margin-left: 270px;">  
+			        <p:column style="width:800px;">  
+			            <h:outputText value="#{comentarios.data}" style="margin:10px; font-weight: bold; "/>  
+			            <h:outputText value="#{comentarios.comentario}" style="text-align: justify;line-height: 150%;margin-bottom: 100px;margin-top: 10px;margin-left: 10px;margin-right: 10px;"/>  
+			        </p:column>  
+			    </p:dataTable>  
+			    <p:inputTextarea id="txtComentario" value="#{postoController.comentario}" style="width:800px;height:100px; margin-top:30px; margin-bottom:20px; margin-left: 270px;" effectDuration="400" />
+			    <p:commandButton value="Salvar"  action="#{postoController.salvarComentarios}" update="comentarios,txtComentario"/>  
+			</h:form>  
+		</div>
+		
+
+    </h:body>  
+ 
+</html>
