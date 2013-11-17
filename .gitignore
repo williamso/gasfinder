@@ -4,12 +4,15 @@
 	bin/**
 	tmp/**
 	tmp/**/*
+	docs/**
+	target/**
+
 	*.tmp
 	*.bak
 	*.swp
 	*~.nib
 	local.properties
-	.settings/
+	.settings/**
 	.loadpath
 	.project
 	.classpath
@@ -29,7 +32,3 @@
 	
 	# TeXlipse plugin
 	.texlipse
-	
-	# docs
-	docs/
-	target/
