@@ -1,9 +1,0 @@
-- Criar  um diagrama de seguencia;
-OK - Descrever como usamos o Scrum e XP no projeto;
-OK - Descrever como funciona a parte de raspagem de dados do site da ANP;
-Alexandre - Explicar como funciona as permissões dos usuários;
-OK - Descrever o uso das ferramentas no desenvolvimento do sistema;
-Alexandre - Descrever um pouco sobre o ScrapperWiki;
-Alexandre - Descrever um pouco sobre o Primefaces;
-OK - Adicionar prints da pela;
-OK - Adicionar uma imagem do código python, e descrever o que ela faz;
